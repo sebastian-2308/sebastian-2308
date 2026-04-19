@@ -1,6 +1,6 @@
 # 👋 ¡Hola! Soy Sebastián Alfonzo
 
-### 🚀 Semillero Científico en Fundacite dedicado a la astronomia | Python & AI Developer | Robótica | Matematicas
+### 🚀 Semillero Científico en Fundacite dedicado a la astronomia | Python & AI Developer | Robótica | Matematicas | Desarollador de paginas web
 
 Soy un apasionado por la tecnología y la ciencia, dedicado a crear soluciones innovadoras que conectan el desarrollo de software con la exploración del cosmos y la robótica.
 
@@ -12,6 +12,7 @@ Soy un apasionado por la tecnología y la ciencia, dedicado a crear soluciones i
 - *🌌 IA aplicada a la Astronomía:* Desarrollo de modelos para el procesamiento y análisis de datos astronómicos (en progreso).
 - *💼 Business Logic Automation:* Sistema de gestión de recursos humanos en Python que automatiza el cálculo de beneficios y vacaciones basado en antigüedad laboral.
 - *🦾 Robótica & Tech:* Proyectos experimentales de automatización y hardware.
+- *👩🏻‍🚀 Pagina web: para los semilleros en astronomia.
 
 ---
 
