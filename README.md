@@ -1,39 +1,53 @@
-# 👋 ¡Hola! Soy Sebastián Alfonzo
+# 🤖 ¡Hola! Soy Sebastián Alfonzo
 
-### 🚀 Semillero Científico en Fundacite dedicado a la astronomia | Python & AI Developer | Robótica | Matematicas | Desarollador de paginas web
-
-Soy un apasionado por la tecnología y la ciencia, dedicado a crear soluciones innovadoras que conectan el desarrollo de software con la exploración del cosmos y la robótica.
+### 🔭 Semillero Científico en Fundacite dedicado a la astronomía | Python & IA Developer | Robótica | Matemáticas | Desarrollador de páginas web
 
 ---
 
-### 🌟 Proyectos Destacados
+## 🌟 NEXUS DEV — Apps · Web · IA
 
-- *🤖 Portable AI (Ollama + Python):* Desarrollo de una implementación portable de modelos de lenguaje (Ollama) que se ejecuta mediante un .exe sin necesidad de instalaciones previas. Diseñado para análisis de datos locales y privacidad con funciones de mover archivos como crearlos, escuchar tu voz y responder a ella y buscar en internet hasta reproducir videos.
-- *🌌 IA aplicada a la Astronomía:* Desarrollo de modelos para el procesamiento y análisis de datos astronómicos (en progreso).
-- *💼 Business Logic Automation:* Sistema de gestión de recursos humanos en Python que automatiza el cálculo de beneficios y vacaciones basado en antigüedad laboral.
-- *🦾 Robótica & Tech:* Proyectos experimentales de automatización y hardware.
-- *👩🏻‍🚀 Pagina web: para los semilleros en astronomia.
+**👉 Visita mi sitio web para ver servicios, precios y portafolio:**
+**https://sebastian-2308.github.io/sebastian-2308/**
+
+Ahí encuentras:
+- 💻 Aplicaciones de PC y Android
+- 🌐 Páginas web profesionales y landing pages
+- 🧠 Agentes con inteligencia artificial
+- 📚 Clases de Python
+
+> Acepto pagos económicos y **trueques/colaboraciones** — hablemos.
+
+---
+
+### 🚀 Proyectos Destacados
+
+- *🤖 Portable AI (Ollama + Python):* Asistente de escritorio 100% local, sin internet ni instalación. Controla tu PC por voz o texto.
+- *🔭 IA aplicada a la Astronomía:* Modelos para procesamiento y análisis de datos astronómicos (en progreso).
+- *⚙️ Business Logic Automation:* Sistema de gestión de recursos humanos en Python.
+- *🔧 Robótica & Tech:* Proyectos experimentales de automatización y hardware.
 
 ---
 
 ### 🛠️ Tecnologías y Herramientas
 
-- *Lenguajes:* Python (Avanzado), Bash, SQL.
-- *IA & ML:* Ollama, NLP, Modelos predictivos.
-- *Ciencia:* Procesamiento de datos científicos, Fundamentos de Astronomía Observacional.
-- *DevOps:* Creación de ejecutables portables, gestión de entornos virtuales.
+- *Lenguajes:* Python (Avanzado), Bash, SQL, HTML/CSS/JS
+- *IA & ML:* Ollama, OpenAI, NLP, Modelos predictivos
+- *Ciencia:* Procesamiento de datos científicos, Astronomía Observacional
+- *DevOps:* Creación de ejecutables portables, entornos virtuales
 
 ---
 
 ### 🏛️ Institución y Comunidad
-- *Semillero Científico:* Investigador en el área de Astronomía en *Fundacite*.
-- *Administrador de Comunidades:* Liderazgo y moderación en grupos de tecnología y astronomía.
-- *Divulgador cientifico:* e dado clases en distintas instituciones sobre astronomia de manera didactica y muy educativa.
+- *Semillero Científico:* Investigador en Astronomía en *Fundacite*.
+- *Administrador de Comunidades:* Liderazgo en grupos de tecnología y astronomía.
+- *Divulgador científico:* Clases en instituciones sobre astronomía de manera didáctica.
 
 ---
 
-### 📫 Conecta conmigo
+### 📬 Conecta conmigo
 - *Email:* sebastianalfonzo23@gmail.com
+- *WhatsApp:* +58 424 2102123
+- *Web:* https://sebastian-2308.github.io/sebastian-2308/
 - *Ubicación:* Venezuela 🇻🇪
 
 > "Construyendo el futuro entre circuitos y estrellas."
