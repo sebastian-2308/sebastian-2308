@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NEXUS · Apps, Web & IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0A0A0F;--bg2:#0F0F1A;--card:#12121F;--card2:#1A1A2E;--border:#1E1E35;--text:#EAEAFF;--muted:#7A7A9E;--neon-cyan:#00FFF7;--neon-magenta:#FF00FF;--neon-gold:#FFD700;--neon-green:#39FF14;--neon-red:#FF0044;--neon-orange:#FF6D00;--accent:var(--neon-cyan);--radius:12px}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+::selection{background:var(--neon-magenta);color:#fff}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--neon-cyan);border-radius:10px}
+
+/* BG GRID ANIMADO */
+#bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.25}
+#bg-grid .g{position:absolute;width:100%;height:100%;background-image:
+  linear-gradient(rgba(0,255,247,.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,255,247,.04) 1px,transparent 1px);background-size:60px 60px}
+#bg-grid .g2{position:absolute;width:100%;height:100%;background:radial-gradient(ellipse at 30% 20%,rgba(255,0,255,.06),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(0,255,247,.04),transparent 60%)}
+#bg-grid .scanline{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--neon-cyan),transparent);opacity:.08;animation:scan 6s linear infinite}
+@keyframes scan{0%{top:-2px}100%{top:100%}}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(10,10,15,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05);transition:.3s}
+nav.scrolled{border-bottom-color:rgba(0,255,247,.15)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:60px;padding:0 20px}
+.nav-logo{font-size:22px;font-weight:800;text-decoration:none;letter-spacing:1px;display:flex;align-items:center;gap:0}
+.nav-logo .n{color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,255,247,.3)}
+.nav-logo .x{color:var(--neon-magenta);text-shadow:0 0 20px rgba(255,0,255,.3)}
+.nav-logo .s{color:var(--muted);font-weight:300;font-size:16px;margin-left:6px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);font-size:12px;font-weight:600;text-decoration:none;transition:color .3s;letter-spacing:.5px;text-transform:uppercase}
+.nav-links a:hover{color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,255,247,.2)}
+.nav-cta{background:linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta));color:#0A0A0F !important;padding:8px 20px;border-radius:6px;font-weight:700 !important;text-transform:none !important;letter-spacing:0 !important}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,255,247,.3) !important}
+.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;padding:8px}
+
+/* SECTIONS */
+section{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:100px 20px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:10px;text-shadow:0 0 10px rgba(0,255,247,.2)}
+.tag::before{content:'◆';font-size:8px}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.1;margin-bottom:12px;text-transform:uppercase}
+.section-title .c{color:var(--neon-cyan);text-shadow:0 0 30px rgba(0,255,247,.2)}
+.section-title .m{color:var(--neon-magenta);text-shadow:0 0 30px rgba(255,0,255,.2)}
+.section-title .g{color:var(--neon-gold);text-shadow:0 0 30px rgba(255,215,0,.2)}
+.section-sub{color:var(--muted);font-size:15px;max-width:540px;line-height:1.7;margin-bottom:40px;font-weight:400}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;border:1px solid rgba(0,255,247,.2);border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:20px;background:rgba(0,255,247,.05)}
+.hero-badge .dot{width:6px;height:6px;border-radius:0;background:var(--neon-green);animation:pulseDot 1.5s ease-in-out infinite;transform:rotate(45deg)}
+@keyframes pulseDot{0%,100%{opacity:1;box-shadow:0 0 6px var(--neon-green)}50%{opacity:.3;box-shadow:none}}
+.hero h1{font-size:clamp(30px,4.5vw,52px);font-weight:800;line-height:1.05;margin-bottom:16px;text-transform:uppercase}
+.hero h1 .l1{color:var(--text)}
+.hero h1 .l2{background:linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.hero h1 .l3{color:var(--neon-gold);display:block;text-shadow:0 0 30px rgba(255,215,0,.2)}
+.hero p{font-size:16px;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:28px}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;transition:all .25s;text-decoration:none;border:none;font-family:inherit;text-transform:uppercase;letter-spacing:.5px}
+.btn-primary{background:linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta));color:#0A0A0F}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 40px rgba(0,255,247,.3)}
+.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.12);color:var(--text)}
+.btn-outline:hover{border-color:var(--neon-cyan);color:var(--neon-cyan);box-shadow:0 0 20px rgba(0,255,247,.1)}
+.hero-visual{display:flex;justify-content:center}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;width:100%;max-width:420px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,255,247,.05)}
+.hero-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--neon-cyan),var(--neon-magenta),transparent)}
+.hero-card .glow{position:absolute;top:-50%;right:-50%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,0,255,.08),transparent 70%);pointer-events:none}
+.hero-card-title{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.hero-card-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.hero-card-item:last-child{border:none}
+.hero-card-item .ic{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(0,255,247,.06);border-radius:6px;font-size:16px;flex-shrink:0}
+.hero-card-item .info{flex:1}
+.hero-card-item .info .t{font-size:14px;font-weight:600}
+.hero-card-item .info .d{font-size:12px;color:var(--muted)}
+.hero-card-item .status{font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.hero-card-item .status.on{background:rgba(57,255,20,.1);color:var(--neon-green)}
+.hero-stats-row{display:flex;gap:24px;margin-top:36px;flex-wrap:wrap}
+.hero-stat{text-align:left}
+.hero-stat-num{font-size:26px;font-weight:800;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,255,247,.2)}
+.hero-stat-label{font-size:11px;color:var(--muted);margin-top:1px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
+.scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;opacity:.3;transition:opacity .3s}
+.scroll-hint:hover{opacity:.7}
+.scroll-hint .arrow{animation:scrollBounce 1.5s ease-in-out infinite;font-size:16px}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:.3s}
+.about-card:hover{border-color:rgba(0,255,247,.1)}
+.about-card h3{font-size:18px;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.3px}
+.about-card h3 .hl{color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,255,247,.2)}
+.about-card p{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:10px}
+.tech-stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.tech-stack span{padding:4px 10px;background:rgba(0,255,247,.06);border:1px solid rgba(0,255,247,.1);border-radius:4px;font-size:10px;font-weight:600;color:var(--neon-cyan);letter-spacing:.3px;text-transform:uppercase}
+.tech-stack span.feat{background:rgba(255,0,255,.08);border-color:rgba(255,0,255,.15);color:var(--neon-magenta)}
+.quote-card{background:linear-gradient(135deg,rgba(0,255,247,.04),rgba(255,0,255,.04));border:1px solid rgba(0,255,247,.1);border-radius:var(--radius);padding:24px;margin-top:14px}
+.quote-card p{font-style:italic;color:var(--text);font-size:14px;line-height:1.7}
+.quote-card cite{display:block;margin-top:10px;font-size:11px;color:var(--neon-cyan);font-style:normal;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.skills-list{list-style:none}
+.skills-list li{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px;color:var(--muted);align-items:center}
+.skills-list li:last-child{border:none}
+.skills-list li .icn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:13px;flex-shrink:0}
+.skills-list li .icn.c{background:rgba(0,255,247,.08)}
+.skills-list li .icn.m{background:rgba(255,0,255,.08)}
+.skills-list li .icn.g{background:rgba(255,215,0,.08)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .35s;position:relative}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neon-cyan),var(--neon-magenta),transparent);opacity:0;transition:opacity .35s}
+.project-card:hover{transform:translateY(-3px);border-color:rgba(0,255,247,.1);box-shadow:0 0 40px rgba(0,255,247,.05)}
+.project-card:hover::before{opacity:1}
+.project-card.full{grid-column:1/-1}
+.project-body{padding:20px 20px 0}
+.project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.project-name{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.project-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.project-tags span{padding:2px 8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:.2px;text-transform:uppercase}
+.project-tags span.sold{background:rgba(255,215,0,.08);border-color:rgba(255,215,0,.15);color:var(--neon-gold)}
+.project-desc{color:var(--muted);font-size:13px;line-height:1.7;margin:8px 0 10px}
+.project-links{display:flex;gap:12px;flex-wrap:wrap;padding-bottom:14px}
+.project-links a{font-size:11px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color .3s;text-transform:uppercase;letter-spacing:.3px}
+.project-demo{padding:0 20px 18px}
+.project-demo .dh{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.project-demo .dh::before{content:'▸';color:var(--neon-cyan);font-size:10px}
+
+/* QUIZ */
+.quiz-box{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.04);border-radius:8px;padding:14px}
+.quiz-q{font-size:13px;font-weight:600;margin-bottom:10px}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.quiz-opt{padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s;color:var(--text);font-family:inherit;font-weight:500}
+.quiz-opt:hover{background:rgba(0,255,247,.08);border-color:var(--neon-cyan)}
+.quiz-opt.correct{background:rgba(57,255,20,.1);border-color:var(--neon-green);color:var(--neon-green)}
+.quiz-opt.wrong{background:rgba(255,0,68,.1);border-color:var(--neon-red);color:var(--neon-red)}
+.quiz-result-box{text-align:center;padding:10px;border-radius:6px;margin-top:8px;font-weight:700;font-size:12px;display:none}
+.quiz-result-box.show{display:block}
+.quiz-result-box.win{background:rgba(57,255,20,.08);color:var(--neon-green)}
+.quiz-result-box.lose{background:rgba(255,0,68,.08);color:var(--neon-red)}
+.quiz-next-btn{display:none;width:100%;padding:9px;margin-top:8px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta));color:#0A0A0F;border:none;border-radius:6px;font-weight:700;cursor:pointer;font-size:12px;font-family:inherit;transition:transform .2s}
+.quiz-next-btn:hover{transform:scale(1.01)}
+.quiz-next-btn.show{display:block}
+
+/* TERMINAL */
+.term-box{background:#06060E;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.term-bar{padding:8px 12px;background:rgba(255,255,255,.02);display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;border-bottom:1px solid rgba(255,255,255,.04)}
+.term-dots{display:flex;gap:4px}
+.term-dots span{width:7px;height:7px;border-radius:50%}
+.term-body{background:#06060E;padding:12px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;min-height:160px;max-height:220px;overflow-y:auto;color:#8A8AAA}
+.term-body .p{color:var(--neon-green)}
+.term-body .c{color:var(--neon-cyan)}
+.term-body .o{color:#8A8AAA;white-space:pre-wrap}
+.term-body .i{color:var(--neon-magenta)}
+.term-input-line{display:flex;background:#06060E;border-top:1px solid rgba(255,255,255,.04)}
+.term-input-line .p{color:var(--neon-green);padding:8px 0 8px 12px;font-family:'JetBrains Mono',monospace;font-size:11px}
+.term-input-line input{flex:1;background:transparent;border:none;color:var(--neon-cyan);font-family:'JetBrains Mono',monospace;font-size:11px;padding:8px 6px;outline:none}
+.term-input-line input::placeholder{color:#333}
+
+/* CODE LAB */
+.codelab-box{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.04);border-radius:8px;overflow:hidden}
+.codelab-h{padding:8px 12px;background:rgba(255,255,255,.02);font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:5px}
+.codelab-body{padding:12px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;overflow-x:auto;color:#aaa}
+.codelab-body .cm{color:#5C6B8A}
+.codelab-body .kw{color:var(--neon-magenta)}
+.codelab-body .fn{color:var(--neon-cyan)}
+.codelab-body .str{color:var(--neon-green)}
+.codelab-body .num{color:var(--neon-orange)}
+.codelab-controls{padding:8px 12px;background:rgba(0,0,0,.2);display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.04)}
+.codelab-controls label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.codelab-controls input[type=range]{flex:1;min-width:80px;accent-color:var(--neon-cyan);height:3px}
+.codelab-controls .val{font-size:12px;font-weight:700;color:var(--neon-cyan);min-width:32px;text-align:center}
+.codelab-run{padding:6px 16px;background:linear-gradient(135deg,var(--neon-green),#00CC33);color:#0A0A0F;border:none;border-radius:4px;font-weight:700;cursor:pointer;font-size:11px;font-family:inherit;text-transform:uppercase;letter-spacing:.3px;transition:transform .2s}
+.codelab-run:hover{transform:scale(1.02)}
+.codelab-output{margin:6px 12px 12px;padding:10px 12px;background:#06060E;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neon-green);border:1px solid rgba(255,255,255,.04);min-height:20px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .35s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));opacity:0;transition:opacity .35s}
+.service-card:hover{transform:translateY(-3px);border-color:rgba(0,255,247,.08)}
+.service-card:hover::before{opacity:1}
+.service-icon{font-size:26px;margin-bottom:12px;display:block}
+.service-card h3{font-size:15px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px}
+.service-card p{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:12px}
+.service-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.service-price{display:inline-block;padding:3px 10px;background:rgba(0,255,247,.06);border:1px solid rgba(0,255,247,.1);border-radius:4px;font-size:11px;font-weight:700;color:var(--neon-cyan)}
+.service-trade{font-size:10px;color:var(--neon-gold);font-weight:600}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:11px 13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:var(--text);font-size:13px;font-family:inherit;transition:border .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--neon-cyan);background:rgba(0,255,247,.03)}
+.form-group textarea{min-height:100px;resize:vertical}
+.form-group select option{background:var(--bg2);color:var(--text)}
+.contact-info{display:flex;flex-direction:column;gap:10px}
+.contact-info a{display:flex;align-items:center;gap:10px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);transition:all .3s;font-size:13px}
+.contact-info a:hover{border-color:var(--neon-cyan);transform:translateX(3px)}
+.contact-info a .ico{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:14px;flex-shrink:0}
+.contact-info a .ico.em{background:rgba(0,255,247,.08)}
+.contact-info a .ico.wa{background:rgba(57,255,20,.08)}
+.status-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:2px}
+.status-card .st-label{font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
+.status-card .st-row{display:flex;align-items:center;gap:8px}
+.status-card .st-dot{width:7px;height:7px;background:var(--neon-green);animation:pulseDot 1.5s ease-in-out infinite;border-radius:0;transform:rotate(45deg)}
+.status-card .st-text{font-size:13px;font-weight:600}
+.status-card .st-sub{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.04);padding:40px 20px 28px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px}
+footer h4{font-size:12px;font-weight:700;color:var(--text);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+footer p,footer a{font-size:12px;color:var(--muted);text-decoration:none;line-height:1.8}
+footer a:hover{color:var(--neon-cyan)}
+.footer-bottom{max-width:1200px;margin:28px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bottom p{font-size:11px;color:var(--muted)}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(24px);transition:all .5s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:968px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-visual{order:-1}
+  .about-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none;position:fixed;top:60px;left:0;width:100%;background:rgba(10,10,15,.98);flex-direction:column;padding:16px 20px;gap:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .projects-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .quiz-opts{grid-template-columns:1fr}
+  .hero-stats-row{gap:16px}
+  section{padding:70px 16px}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="bg-grid"><div class="g"></div><div class="g2"></div><div class="scanline"></div></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><span class="n">NEX</span><span class="x">US</span><span class="s">//DEV</span></a>
+    <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#work">Trabajo</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#contact" class="nav-cta">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> Disponible para proyectos</div>
+      <h1>
+        <span class="l1">Hago</span>
+        <span class="l2">Apps · Web · IA</span>
+        <span class="l3">Que funcionan</span>
+      </h1>
+      <p>Desarrollo aplicaciones de PC, Android y páginas web profesionales. También creo mini landing pages para mostrar modelos, productos o proyectos. Código limpio, diseño que pega fuerte.</p>
+      <div class="hero-buttons">
+        <a href="#work" class="btn btn-primary">Ver trabajos →</a>
+        <a href="#services" class="btn btn-outline">Servicios</a>
+      </div>
+      <div class="hero-stats-row">
+        <div class="hero-stat"><div class="hero-stat-num">8+</div><div class="hero-stat-label">Proyectos</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">PC·Web·Android</div><div class="hero-stat-label">Plataformas</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Código propio</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="glow"></div>
+        <div class="hero-card-title">◆ Capacidades</div>
+        <div class="hero-card-item">
+          <span class="ic">🖥️</span>
+          <div class="info"><div class="t">Apps de PC</div><div class="d">Windows / Mac con Python + Flet</div></div>
+          <span class="status on">Activo</span>
+        </div>
+        <div class="hero-card-item">
+          <span class="ic">📱</span>
+          <div class="info"><div class="t">Apps Android</div><div class="d">Aplicaciones móviles nativas</div></div>
+          <span class="status on">Activo</span>
+        </div>
+        <div class="hero-card-item">
+          <span class="ic">🌐</span>
+          <div class="info"><div class="t">Páginas Web</div><div class="d">Sitios profesionales + landing pages</div></div>
+          <span class="status on">Activo</span>
+        </div>
+        <div class="hero-card-item">
+          <span class="ic">🤖</span>
+          <div class="info"><div class="t">Agentes IA</div><div class="d">Asistentes locales con inteligencia artificial</div></div>
+          <span class="status on">Activo</span>
+        </div>
+        <div class="hero-card-item">
+          <span class="ic">📚</span>
+          <div class="info"><div class="t">Clases Python</div><div class="d">Aprende programación desde cero</div></div>
+          <span class="status on">Activo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" onclick="document.getElementById('about').scrollIntoView()">▼ Desplázate</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="tag">Sobre mí</div>
+  <h2 class="section-title"><span class="c">Detrás</span> <span class="m">de</span> <span class="g">NEXUS</span></h2>
+  <p class="section-sub">Desarrollador venezolano. Creo software que resuelve problemas reales: apps, web, inteligencia artificial y automatización.</p>
+  <div class="about-grid">
+    <div>
+      <div class="about-card reveal">
+        <h3>Sebastián <span class="hl">Alfonzo</span></h3>
+        <p>Fundador de NEXUS. Llevo años construyendo software completo: desde aplicaciones educativas gamificadas con 35 niveles y jefes finales, hasta asistentes de inteligencia artificial 100% locales que controlan el PC por voz. También he vendido proyectos web profesionales.</p>
+        <p>Mi filosofía: <strong>código limpio, interfaces que responden, y productos que la gente realmente use</strong>. No entrego archivos, entrego soluciones funcionales.</p>
+        <p>Acepto proyectos por pago económico <strong>y también beneficios no monetarios</strong> (trueque, colaboraciones, experiencia) dependiendo del proyecto y lo que ofrezcas. Hablemos.</p>
+        <div class="tech-stack">
+          <span>Python</span>
+          <span class="feat">Flet</span>
+          <span>Android</span>
+          <span>HTML/CSS/JS</span>
+          <span>Ollama/LLM</span>
+          <span>Firebase</span>
+          <span>Git</span>
+          <span>Web Dev</span>
+        </div>
+      </div>
+      <div class="quote-card reveal">
+        <p>"No es solo código. Es una app que instalas, una web que visitas, un asistente que te entiende. Construyo experiencias completas."</p>
+        <cite>— Fundador de NEXUS</cite>
+      </div>
+    </div>
+    <div class="about-card reveal">
+      <h3>Lo que <span class="hl">hago</span></h3>
+      <ul class="skills-list">
+        <li><span class="icn c">🖥️</span> Aplicaciones de PC con Python + Flet</li>
+        <li><span class="icn m">📱</span> Aplicaciones Android</li>
+        <li><span class="icn g">🌐</span> Páginas web profesionales</li>
+        <li><span class="icn c">🎯</span> Mini landing pages para modelos/productos</li>
+        <li><span class="icn m">🤖</span> Agentes con inteligencia artificial</li>
+        <li><span class="icn g">📚</span> Clases particulares de Python</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WORK - Modelos de páginas vendidas -->
+<section id="work">
+  <div class="tag">Trabajos realizados</div>
+  <h2 class="section-title"><span class="g">Proyectos</span> <span class="c">vendidos</span></h2>
+  <p class="section-sub">He entregado proyectos web y apps Android a clientes reales. Aquí enseño modelos similares a lo que puedo hacer por ti — los originales pertenecen a sus dueños y no son públicos.</p>
+  <div class="projects-grid">
+    <!-- Modelo 1: Portal Educativo -->
+    <div class="project-card reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">🔭 Portal Educativo</div>
+            <div class="project-tags"><span>Modelo</span><span>Web</span><span>HTML/CSS/JS</span><span class="sold">Vendido ✅</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Portal web completo: simulador interactivo, calculadoras, asistente con IA, juegos educativos, aula virtual con cursos y panel de administración. <strong style="color:var(--text)">Versión real entregada a cliente.</strong></div>
+        <div class="project-links">
+          <span style="font-size:11px;color:var(--neon-magenta);font-weight:600">🔒 Proyecto del cliente — privado</span>
+        </div>
+      </div>
+      <div class="project-demo">
+        <div class="dh">Preview del modelo</div>
+        <div style="background:var(--bg2);border:1px solid rgba(255,255,255,.04);border-radius:6px;overflow:hidden">
+          <div style="display:flex;gap:4px;padding:6px 8px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.04)">
+            <span style="width:8px;height:8px;border-radius:50%;background:#FF5F57"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:#FFBD2E"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:#28C840"></span>
+            <span style="color:var(--muted);font-size:8px;margin-left:6px;font-family:'JetBrains Mono',monospace">portal-modelo</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px">
+            <div style="background:linear-gradient(135deg,rgba(0,255,247,.08),rgba(255,0,255,.04));border-radius:4px;padding:8px;text-align:center">
+              <span style="font-size:14px">🌌</span>
+              <div style="font-size:7px;color:var(--neon-cyan);font-weight:700;text-transform:uppercase;margin-top:2px">Simulador</div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,0,255,.04));border-radius:4px;padding:8px;text-align:center">
+              <span style="font-size:14px">🤖</span>
+              <div style="font-size:7px;color:var(--neon-gold);font-weight:700;text-transform:uppercase;margin-top:2px">IA</div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(255,0,255,.06),rgba(0,255,247,.04));border-radius:4px;padding:8px;text-align:center">
+              <span style="font-size:14px">📚</span>
+              <div style="font-size:7px;color:var(--neon-magenta);font-weight:700;text-transform:uppercase;margin-top:2px">Cursos</div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(0,255,247,.06),rgba(255,215,0,.04));border-radius:4px;padding:8px;text-align:center">
+              <span style="font-size:14px">🎮</span>
+              <div style="font-size:7px;color:var(--neon-cyan);font-weight:700;text-transform:uppercase;margin-top:2px">Juegos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modelo 2: Mini Landing -->
+    <div class="project-card reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">🎯 Landing para Producto</div>
+            <div class="project-tags"><span>Modelo</span><span>Web</span><span>HTML/CSS/JS</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Mini landing page moderna para mostrar un producto, servicio o portafolio. Diseño responsivo, animaciones, enlaces y formulario de contacto integrado.</div>
+        <div class="project-links">
+          <span style="font-size:11px;color:var(--neon-cyan);font-weight:600">🧪 Modelo demostrativo</span>
+        </div>
+      </div>
+      <div class="project-demo">
+        <div class="dh">Vista previa</div>
+        <div style="background:var(--bg2);border:1px solid rgba(255,255,255,.04);border-radius:6px;overflow:hidden">
+          <div style="display:flex;gap:4px;padding:6px 8px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.04)">
+            <span style="width:8px;height:8px;border-radius:50%;background:#FF5F57"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:#FFBD2E"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:#28C840"></span>
+          </div>
+          <div style="padding:14px;text-align:center">
+            <div style="font-size:9px;color:var(--neon-cyan);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px">Nombre del Producto</div>
+            <div style="font-size:7px;color:var(--muted);margin-bottom:8px;line-height:1.4">Descripción breve y directa del producto o servicio que se ofrece.</div>
+            <div style="display:flex;gap:4px;justify-content:center">
+              <span style="padding:3px 10px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta));border-radius:3px;font-size:7px;color:#0A0A0F;font-weight:700">Contactar</span>
+              <span style="padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:3px;font-size:7px;color:var(--muted)">Ver más</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="tag">Portafolio</div>
+  <h2 class="section-title"><span class="c">Proyectos</span> <span class="m">que</span> <span class="g">hablan</span></h2>
+  <p class="section-sub">Cada proyecto está vivo. Algunos incluyen demos interactivas para que los pruebes aquí mismo.</p>
+  <div class="projects-grid">
+
+    <!-- ASTROBOKK -->
+    <div class="project-card reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">📱 Astrobokk</div>
+            <div class="project-tags"><span>Android</span><span>App Móvil</span><span>Python</span><span class="sold">Vendido ✅</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Aplicación educativa gamificada para Android con 35 niveles, jefes finales, XP, rachas, misiones diarias, speedrun y temas visuales. <strong style="color:var(--text)">App Android entregada a cliente.</strong></div>
+        <div class="project-links">
+        </div>
+      </div>
+      <div class="project-demo">
+        <div class="dh">Mini quiz</div>
+        <div class="quiz-box">
+          <div class="quiz-q" id="quiz-q">Cargando...</div>
+          <div class="quiz-opts" id="quiz-opts"></div>
+          <div class="quiz-result-box" id="quiz-result"></div>
+          <button class="quiz-next-btn" id="quiz-next">Siguiente →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXUS CLI -->
+    <div class="project-card reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">⚡ Nexus CLI</div>
+            <div class="project-tags"><span>Python</span><span>LLM</span><span>Tool-use</span><span>App PC</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Asistente de programación con IA. Analiza código, edita archivos, ejecuta herramientas. Conectable a Ollama, OpenAI o Anthropic. <strong style="color:var(--text)">App de PC con terminal.</strong></div>
+        <div class="project-links">
+        </div>
+      </div>
+      <div class="project-demo">
+        <div class="dh">Terminal simulada</div>
+        <div class="term-box">
+          <div class="term-bar">
+            <span class="term-dots"><span style="background:#FF5F57"></span><span style="background:#FFBD2E"></span><span style="background:#28C840"></span></span>
+            nexus@sebastian:~
+          </div>
+          <div class="term-body" id="term-body">
+            <div><span class="p">➜</span> <span class="c">nexus --version</span></div>
+            <div class="o">nexus v2.0.0 · provider: ollama · model: qwen2.5-coder:7b</div>
+          </div>
+          <div class="term-input-line">
+            <span class="p">➜</span>
+            <input id="term-input" placeholder="help, analyze, search, read, list, clear..." autofocus>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REBECA -->
+    <div class="project-card reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">🤖 Rebeca</div>
+            <div class="project-tags"><span>Python</span><span>LLM</span><span>Agente</span><span>App PC</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Agente conversacional con uso de herramientas. Rebeca entiende lenguaje natural, lee archivos, busca código, analiza proyectos y ejecuta comandos. Arquitectura modular.</div>
+        <div class="project-links">
+        </div>
+      </div>
+    </div>
+
+    <!-- JARVIS IA -->
+    <div class="project-card reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">🖥️ JARVIS IA Local</div>
+            <div class="project-tags"><span>Python</span><span>Voz</span><span>Portable</span><span>App PC</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Asistente de escritorio 100% local, sin internet ni instalación. Controla tu PC por voz o texto como JARVIS. Abre programas, busca en web, controla volumen y mouse. ¡Portable en USB!</div>
+        <div class="project-links">
+        </div>
+      </div>
+    </div>
+
+    <!-- CODIGOS -->
+    <div class="project-card full reveal">
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-name">📚 Python Desde Cero</div>
+            <div class="project-tags"><span>Python</span><span>Educación</span><span>Material</span></div>
+          </div>
+        </div>
+        <div class="project-desc">Lecciones interactivas de Python para principiantes usando ejemplos reales de proyectos NEXUS. Variables, tipos, condicionales, listas, bucles. Aprende programación con código verdadero.</div>
+        <div class="project-links">
+        </div>
+      </div>
+      <div class="project-demo">
+        <div class="dh">Laboratorio interactivo</div>
+        <div class="codelab-box">
+          <div class="codelab-h">📄 rangos.py</div>
+          <div class="codelab-body">
+<span class="kw">def</span> <span class="fn">calcular_rango</span>(xp):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> xp &lt;= <span class="num">199</span>: <span class="kw">return</span> <span class="str">"🌑 Novato"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">elif</span> xp &lt;= <span class="num">499</span>: <span class="kw">return</span> <span class="str">"🌙 Astrónomo"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">elif</span> xp &lt;= <span class="num">999</span>: <span class="kw">return</span> <span class="str">"🚀 Explorador"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">else</span>: <span class="kw">return</span> <span class="str">"👑 Leyenda Cósmica"</span><br><br>
+<span class="cm"># Arrastra el slider y ejecuta</span><br>
+xp = <span class="num" id="lab-xp">500</span><br>
+<span class="fn">print</span>(<span class="str">f"Con {xp} XP → {calcular_rango(xp)}"</span>)
+          </div>
+          <div class="codelab-controls">
+            <label>XP</label>
+            <input type="range" id="lab-slider" min="0" max="2000" value="500">
+            <span class="val" id="lab-display">500</span>
+            <button class="codelab-run" id="lab-run">▶ Ejecutar</button>
+          </div>
+          <div class="codelab-output" id="lab-output">Con 500 XP → 🌙 Astrónomo</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="tag">Servicios</div>
+  <h2 class="section-title"><span class="c">Lo que</span> <span class="m">puedo</span> <span class="g">hacer por ti</span></h2>
+  <p class="section-sub">Acepto pagos económicos y también beneficios no monetarios (trueque, colaboración, experiencia) dependiendo del proyecto.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🖥️</span>
+      <h3>Apps de PC</h3>
+      <p>Aplicaciones de escritorio para Windows/Mac con Python + Flet. Interfaz moderna, base de datos, audio, animaciones. Empaquetado .exe listo para instalar.</p>
+      <div class="service-bottom">
+        <span class="service-price">$80 - $150 USD</span>
+        <span class="service-trade">♻️ Trueque disponible</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📱</span>
+      <h3>Apps Android</h3>
+      <p>Aplicaciones móviles para Android. Juegos, herramientas educativas, productividad. Publicación en Play Store disponible.</p>
+      <div class="service-bottom">
+        <span class="service-price">$80 - $150 USD</span>
+        <span class="service-trade">♻️ Trueque disponible</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌐</span>
+      <h3>Páginas Web</h3>
+      <p>Sitios web profesionales, landing pages, portafolios, tiendas básicas. Diseño responsivo, moderno, optimizado. Hosting incluido.</p>
+      <div class="service-bottom">
+        <span class="service-price">$35 - $50 USD</span>
+        <span class="service-trade">♻️ Trueque disponible</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🎯</span>
+      <h3>Mini Landing Pages</h3>
+      <p>Páginas individuales para mostrar modelos, productos, proyectos o servicios. Ideales para portfolios, lanzamientos o showcases interactivos.</p>
+      <div class="service-bottom">
+        <span class="service-price">$20 - $40 USD</span>
+        <span class="service-trade">♻️ Trueque disponible</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🤖</span>
+      <h3>Agentes con IA</h3>
+      <p>Asistentes inteligentes locales o cloud. Chatbots, agentes autónomos con tool-use, control por voz, automatización con LLMs (Ollama, OpenAI, Anthropic).</p>
+      <div class="service-bottom">
+        <span class="service-price">$100 - $200 USD</span>
+        <span class="service-trade">♻️ Trueque disponible</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📚</span>
+      <h3>Clases de Python</h3>
+      <p>Clases online personalizadas. Desde cero hasta proyectos reales. Aprendé haciendo con ejemplos de aplicaciones verdaderas.</p>
+      <div class="service-bottom">
+        <span class="service-price">$10 - $15 USD / hora</span>
+        <span class="service-trade">♻️ Trueque disponible</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="tag">Contacto</div>
+  <h2 class="section-title"><span class="c">Hablemos</span></h2>
+  <p class="section-sub">Cuéntame qué necesitas. Si no tengo el presupuesto que buscas, podemos llegar a un acuerdo no monetario.</p>
+  <div class="contact-wrap">
+    <form class="contact-form reveal" id="contact-form">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" id="form-name" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="form-email" placeholder="tu@correo.com" required>
+      </div>
+      <div class="form-group">
+        <label>¿Qué necesitas?</label>
+        <select id="form-service">
+          <option value="">Selecciona uno</option>
+          <option>App de PC</option>
+          <option>App Android</option>
+          <option>Página web</option>
+          <option>Mini landing page</option>
+          <option>Asistente con IA</option>
+          <option>Clases de Python</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cuéntame tu idea</label>
+        <textarea id="form-message" placeholder="Descríbeme tu proyecto o lo que tienes en mente..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Presupuesto</label>
+        <input type="text" id="form-budget" placeholder="$ USD o propuesta de trueque">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:14px;padding:13px">Enviar mensaje →</button>
+      <div id="form-status" style="text-align:center;margin-top:10px;font-size:12px"></div>
+    </form>
+    <div class="contact-info reveal">
+      <a href="mailto:sebastianalfonzo23@gmail.com">
+        <span class="ico em">📧</span>
+        <span>sebastianalfonzo23@gmail.com</span>
+      </a>
+      <a href="https://wa.me/584242102123" target="_blank">
+        <span class="ico wa">💬</span>
+        <span>WhatsApp</span>
+      </a>
+      <div class="status-card">
+        <div class="st-label">Disponibilidad</div>
+        <div class="st-row">
+          <span class="st-dot"></span>
+          <span class="st-text">Disponible para proyectos</span>
+        </div>
+        <div class="st-sub">Respuesta típica: menos de 24h. Acepto trueques y colaboraciones.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4 style="font-size:18px;font-weight:800;margin-bottom:6px;letter-spacing:1px"><span style="color:var(--neon-cyan)">NEX</span><span style="color:var(--neon-magenta)">US</span></h4>
+      <p>Apps de PC, Android, páginas web, inteligencia artificial y clases de Python. Creado en Venezuela 🇻🇪</p>
+    </div>
+    <div>
+      <h4>Navega</h4>
+      <a href="#about">Sobre mí</a><br>
+      <a href="#work">Trabajo</a><br>
+      <a href="#projects">Proyectos</a><br>
+      <a href="#services">Servicios</a><br>
+      <a href="#contact">Contacto</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <a href="mailto:sebastianalfonzo23@gmail.com">Email</a><br>
+      <a href="https://wa.me/584242102123" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NEXUS — Sebastián Alfonzo</p>
+    <p>Apps · Web · IA</p>
+  </div>
+</footer>
+
+<script>
+// === BG SCANLINE ===
+(function(){
+  const c=document.getElementById('bg-grid');
+  for(let i=0;i<3;i++){
+    const s=document.createElement('div');
+    s.className='scanline';
+    s.style.animationDelay=(i*2)+'s';
+    s.style.animationDuration=(6+i*2)+'s';
+    c.appendChild(s);
+  }
+})();
+
+// === NAV SCROLL ===
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+
+// === REVEAL ===
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// === QUIZ ===
+const qz=[
+  {q:'¿Cuántos planetas tiene el Sistema Solar?',o:['7','8','9','10'],a:1},
+  {q:'¿Cuál es el planeta más grande?',o:['Saturno','Júpiter','Neptuno','Urano'],a:1},
+  {q:'¿Qué estrella está más cerca?',o:['Alfa Centauri','Sirius','El Sol','Próxima Centauri'],a:2},
+  {q:'¿Cada cuánto se aleja la Luna?',o:['1.2 cm/año','3.8 cm/año','5.5 cm/año','10 cm/año'],a:1},
+  {q:'¿Tiempo luz del Sol a Tierra?',o:['2 min','5 min','8 min','12 min'],a:2},
+  {q:'¿Masa del Sol en el Sistema Solar?',o:['50%','75%','99.86%','99.99%'],a:2},
+];
+let qi=0,qs=0;
+function lq(){
+  const q=qz[qi];
+  document.getElementById('quiz-q').textContent=q.q;
+  const o=document.getElementById('quiz-opts');o.innerHTML='';
+  q.o.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='quiz-opt';b.textContent=t;
+    b.onclick=()=>cq(i,b);o.appendChild(b);
+  });
+  const r=document.getElementById('quiz-result');
+  r.className='quiz-result-box';r.style.display='none';
+  document.getElementById('quiz-next').className='quiz-next-btn';
+}
+function cq(i,b){
+  const q=qz[qi];
+  document.querySelectorAll('.quiz-opt').forEach(b=>{b.onclick=null;b.disabled=true});
+  const r=document.getElementById('quiz-result');r.style.display='block';
+  if(i===q.a){qs++;r.className='quiz-result-box win show';r.textContent='✅ Correcto';b.classList.add('correct')}
+  else{r.className='quiz-result-box lose show';r.textContent='❌ Era: '+q.o[q.a];b.classList.add('wrong');document.querySelectorAll('.quiz-opt')[q.a].classList.add('correct')}
+  document.getElementById('quiz-next').className='quiz-next-btn show';
+  document.getElementById('quiz-next').textContent=qi<qz.length-1?'Siguiente →':'Resultado';
+}
+document.getElementById('quiz-next').onclick=()=>{
+  qi++;
+  if(qi<qz.length)lq();
+  else{
+    const r=document.getElementById('quiz-result');
+    r.style.display='block';r.className='quiz-result-box win show';
+    r.innerHTML='🏆 <strong>'+qs+'/'+qz.length+'</strong>'+(qs===qz.length?' ¡Perfecto!':'');
+    document.getElementById('quiz-opts').innerHTML='';
+    document.getElementById('quiz-q').textContent='¿Otra ronda?';
+    document.getElementById('quiz-next').textContent='🔄 Reintentar';
+    document.getElementById('quiz-next').onclick=()=>{qi=0;qs=0;lq()};
+  }
+};
+lq();
+
+// === TERMINAL ===
+const tb=document.getElementById('term-body'),ti=document.getElementById('term-input');
+const cm={
+  help:'Comandos: help, version, analyze &lt;file&gt;, search &lt;q&gt;, read &lt;file&gt;, list, clear, about',
+  version:'nexus v2.0.0 · provider: ollama · model: qwen2.5-coder:7b · tools: 15 registradas',
+  about:'Nexus — Asistente de IA para programación\nCreado por Sebastián Alfonzo · 100% local',
+  clear:null,
+};
+ti.addEventListener('keydown',e=>{
+  if(e.key!=='Enter')return;
+  const c=ti.value;ti.value='';
+  const l=document.createElement('div');l.innerHTML='<span class="p">➜</span> <span class="c">'+c+'</span>';
+  tb.appendChild(l);
+  const o=document.createElement('div');o.className='o';
+  const s=c.trim().toLowerCase();
+  if(s===''||s==='clear'){tb.innerHTML='';return}
+  if(cm[s]!==undefined){if(cm[s]===null){tb.innerHTML='';return}o.textContent=cm[s]}
+  else if(s.startsWith('analyze ')){o.className='i';o.textContent='[analyze] '+s.slice(8)+'\n  → funciones: 12 · clases: 3 · imports: 8 · líneas: 245'}
+  else if(s.startsWith('search ')){o.className='i';o.textContent='[search] "'+s.slice(7)+'" · 5 resultados\n  main.py:23 · app.py:156 · data.py:88 · agent.py:45 · cli.py:12'}
+  else if(s==='list'){o.className='i';o.textContent='[list] proyectos detectados:\n  📁 appastronomia/  (Python/Flet)\n  📁 nexus/  (CLI)\n  📁 codigos/  (Educación)'}
+  else if(s.startsWith('read ')){o.textContent='[read] leyendo '+s.slice(5)+'...\n(mostrando primeras 30 líneas de 245)'}
+  else o.textContent='Comando no encontrado. Escribe "help".';
+  tb.appendChild(o);tb.scrollTop=tb.scrollHeight;
+});
+
+// === CODE LAB ===
+const ls=document.getElementById('lab-slider'),ld=document.getElementById('lab-display'),lv=document.getElementById('lab-xp'),lo=document.getElementById('lab-output');
+function rc(x){if(x<=199)return'🌑 Novato';if(x<=499)return'🌙 Astrónomo';if(x<=999)return'🚀 Explorador';return'👑 Leyenda Cósmica'}
+function ul(){const x=parseInt(ls.value);ld.textContent=x;lv.textContent=x}
+ls.addEventListener('input',ul);
+document.getElementById('lab-run').addEventListener('click',()=>{const x=parseInt(ls.value);lo.textContent='Con '+x+' XP → '+rc(x)});
+ul();
+
+// === CONTACT FORM ===
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  const n=document.getElementById('form-name').value.trim();
+  const em=document.getElementById('form-email').value.trim();
+  const sv=document.getElementById('form-service').value;
+  const msg=document.getElementById('form-message').value.trim();
+  const bg=document.getElementById('form-budget').value.trim();
+  const st=document.getElementById('form-status');
+  if(!n||!em||!msg){st.textContent='Completa los campos obligatorios.';st.style.color='var(--neon-red)';return}
+  const b=`Nuevo contacto desde NEXUS.dev\n\nNombre: ${n}\nEmail: ${em}\nServicio: ${sv||'No especificado'}\nPresupuesto: ${bg||'No especificado'}\n\nMensaje:\n${msg}`;
+  window.location.href=`mailto:sebastianalfonzo23@gmail.com?subject=Contacto%20NEXUS%20-%20${encodeURIComponent(n)}&body=${encodeURIComponent(b)}`;
+  st.textContent='✅ Abriendo tu cliente de correo...';
+  st.style.color='var(--neon-green)';
+  this.reset();
+});
+</script>
+</body>
+</html>
