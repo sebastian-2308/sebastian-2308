@@ -1,6 +1,6 @@
-# 🤖 ¡Hola! Soy Sebastián Alfonzo
+#  ¡Hola! Soy Sebastián Alfonzo
 
-### 🔭 Semillero Científico en Fundacite dedicado a la astronomía | Python & IA Developer | Robótica | Matemáticas | Desarrollador de páginas web
+### 🔭 Semillero Científico de venezuela dedicado a la astronomía | Python & IA Developer | Robótica | Matemáticas | Desarrollador de páginas web
 
 ---
 
@@ -34,15 +34,13 @@ Ahí encuentras:
 - *IA & ML:* Ollama, OpenAI, NLP, Modelos predictivos
 - *Ciencia:* Procesamiento de datos científicos, Astronomía Observacional
 - *DevOps:* Creación de ejecutables portables, entornos virtuales
-
+  
 ---
 
 ### 🏛️ Institución y Comunidad
 - *Semillero Científico:* Investigador en Astronomía en *Fundacite*.
 - *Administrador de Comunidades:* Liderazgo en grupos de tecnología y astronomía.
-- *Divulgador científico:* Clases en instituciones sobre astronomía de manera didáctica.
-
----
+- *Divulgador científico:* Clases en instituciones sobre astronomía de manera didáctica. 
 
 ### 📬 Conecta conmigo
 - *Email:* sebastianalfonzo23@gmail.com
