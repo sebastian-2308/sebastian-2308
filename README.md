@@ -4,7 +4,7 @@
 
 ---
 
-## 🌟 NEXUS DEV — Apps · Web · IA
+## 🌟 SEI — Apps · Web · IA
 
 **👉 Visita mi sitio web para ver servicios, precios y portafolio:**
 **https://sebastian-2308.github.io/sebastian-2308/**
