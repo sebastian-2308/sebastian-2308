@@ -100,6 +100,10 @@ section{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:100px
 .about-card:hover{border-color:rgba(0,255,247,.1)}
 .about-card h3{font-size:18px;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.3px}
 .about-card h3 .hl{color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,255,247,.2)}
+  .about-head{display:flex;align-items:center;gap:22px;margin-bottom:14px}
+  .about-photo{width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--neon-cyan);box-shadow:0 0 34px rgba(0,255,247,.28);background:var(--card2);flex-shrink:0}
+  .about-head h3{margin-bottom:4px}
+  .about-role{color:var(--neon-gold);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .about-card p{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:10px}
 .tech-stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
 .tech-stack span{padding:4px 10px;background:rgba(0,255,247,.06);border:1px solid rgba(0,255,247,.1);border-radius:4px;font-size:10px;font-weight:600;color:var(--neon-cyan);letter-spacing:.3px;text-transform:uppercase}
@@ -336,7 +340,13 @@ footer a:hover{color:var(--neon-cyan)}
   <div class="about-grid">
     <div>
       <div class="about-card reveal">
-        <h3>Sebastián <span class="hl">Alfonzo</span></h3>
+        <div class="about-head">
+          <img class="about-photo" src="profile.jpg" alt="Sebastián Alfonzo — Fundador de SEI">
+          <div>
+            <h3>Sebastián <span class="hl">Alfonzo</span></h3>
+            <div class="about-role">Fundador de SEI · Python &amp; IA · Divulgador científico</div>
+          </div>
+        </div>
         <p>Fundador de SEI. Desarrollador Python y divulgador científico (Semillero de Astronomía, Fundacite Caracas). Construyo software completo: desde aplicaciones educativas gamificadas con 36 niveles, hasta asistentes de inteligencia artificial 100% locales que controlan el PC por voz. He vendido proyectos web profesionales.</p>
         <p>Mi filosofía: <strong>código limpio, interfaces que responden, y productos que la gente realmente use</strong>. No entrego archivos, entrego soluciones funcionales.</p>
         <p>Acepto proyectos por pago económico <strong>y también beneficios no monetarios</strong> (trueque, colaboraciones, experiencia) dependiendo del proyecto y lo que ofrezcas. Hablemos.</p>
