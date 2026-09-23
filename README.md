@@ -1,53 +1,46 @@
-#  ¡Hola! Soy Sebastián Alfonzo
-
-### 🔭 Emprendedor venezolano y desarrollador | Python & IA Developer | Robótica | Matemáticas | Desarrollador de páginas web
-
----
-
-## 🌟 SEY — Soluciones Empresariales y Tecnología
-
-**👉 Visita mi sitio web para ver servicios, precios y portafolio:**
-**https://sebastian-2308.github.io/sebastian-2308/**
-
-Ahí encuentras:
-- 💻 Aplicaciones de PC y Android
-- 🌐 Páginas web profesionales y landing pages
-- 🧠 Agentes con inteligencia artificial
-- 📚 Clases de Python
-
-> Pagos en dólares (USD): efectivo, Zelle, Pago Móvil y transferencia.
-> Empresa con alcance internacional: también **buscamos talentos** y **compramos proyectos innovadores** en Venezuela y el mundo.
+<h1 align="center">SEY — Soluciones Empresariales y Tecnología</h1>
+<p align="center"><b>Apps · Web · Inteligencia Artificial · Robótica · Educación</b></p>
+<p align="center">Empresa venezolana de tecnología con alcance internacional 🇻🇪🌎</p>
 
 ---
 
-### 🚀 Proyectos Destacados
+### 👋 Sobre la empresa
 
-- *🤖 Portable AI (Ollama + Python):* Asistente de escritorio 100% local, sin internet ni instalación. Controla tu PC por voz o texto.
-- *🔭 IA aplicada a la Astronomía:* Modelos para procesamiento y análisis de datos astronómicos (en progreso).
-- *⚙️ Business Logic Automation:* Sistema de gestión de recursos humanos en Python.
-- *🔧 Robótica & Tech:* Proyectos experimentales de automatización y hardware.
+Somos **SEY**, una empresa privada de tecnología fundada en Caracas, Venezuela, con **atención remota para clientes en todo el mundo**. Desarrollamos software que resuelve problemas reales: código limpio, soluciones funcionales y precios justos en dólares (USD).
 
----
+**Fundador:** Sebastián Alfonzo · **Sede:** Caracas, Venezuela · **Cobertura:** Venezuela, Latinoamérica y el mundo.
 
-### 🛠️ Tecnologías y Herramientas
+### 🛠️ Servicios
 
-- *Lenguajes:* Python (Avanzado), Bash, SQL, HTML/CSS/JS
-- *IA & ML:* Ollama, OpenAI, NLP, Modelos predictivos
-- *Ciencia:* Procesamiento de datos científicos, Astronomía Observacional
-- *DevOps:* Creación de ejecutables portables, entornos virtuales
-  
----
+| Servicio | Precio (USD) |
+|---|---|
+| 💻 Aplicaciones de PC (Windows/Mac) | $100 – $200 |
+| 📱 Aplicaciones Android | $100 – $200 |
+| 🌐 Páginas web profesionales | $40 – $80 |
+| 🎯 Mini landing pages | $25 – $50 |
+| 🤖 Agentes con inteligencia artificial | $120 – $300 |
+| 📚 Clases de Python | $8 – $12 / hora |
 
-### 🏭 Empresa y Talento
-- *Empresa privada:* Soluciones Empresariales y Tecnología (SEY), fundada en Caracas, Venezuela, con alcance internacional.
-- *Buscamos talentos:* Desarrolladores y diseñadores de Venezuela y el mundo que quieran sumarse al equipo.
-- *Compramos proyectos:* Si tienes un proyecto innovador, te lo compramos.
-- *Divulgador de tecnología:* Clases y formación en Python, robótica e IA para empresas y particulares. 
+**Formas de pago:** efectivo, Zelle, Pago Móvil y transferencia.
 
-### 📬 Conecta conmigo
-- *Email:* sebastianalfonzo23@gmail.com
-- *WhatsApp:* +58 424 2102123
-- *Web:* https://sebastian-2308.github.io/sebastian-2308/
-- *Ubicación:* Venezuela 🇻🇪
+### 🚀 Proyectos destacados
+
+- **Astrobook** — Juego educativo de astronomía con 36 niveles, misiones y clasificaciones en línea (Python + Flet + Cloudflare).
+- **nexus** — Asistente de programación con IA para terminal (CLI + Ollama, OpenAI, Anthropic).
+- **Asistente Local de Voz** — IA 100 % local que controla tu PC por voz o texto.
+- **AprendePy** — App de escritorio para aprender Python con niveles interactivos.
+- **Clasificación Estelar** — Simulador de clasificación espectral de estrellas (OBAFGKM).
+
+### 🤝 Buscamos talentos y compramos proyectos
+
+- **Buscamos talentos:** desarrolladores y diseñadores de Venezuela y el mundo que quieran sumarse al equipo.
+- **Compramos proyectos:** si tienes un proyecto o idea innovadora, preséntalo y te lo compramos.
+
+### 📬 Contacto
+
+- 📧 **Correo:** sebastianalfonzo23@gmail.com
+- 💬 **WhatsApp:** +58 424 2102123
+- 🌐 **Web:** https://sebastian-2308.github.io/sebastian-2308/
+- 🐙 **GitHub:** [github.com/sebastian-2308](https://github.com/sebastian-2308)
 
 > "Construyendo el futuro entre circuitos y estrellas."
