@@ -1,10 +1,10 @@
 #  ¡Hola! Soy Sebastián Alfonzo
 
-### 🔭 Semillero Científico de venezuela dedicado a la astronomía | Python & IA Developer | Robótica | Matemáticas | Desarrollador de páginas web
+### 🔭 Emprendedor venezolano y desarrollador | Python & IA Developer | Robótica | Matemáticas | Desarrollador de páginas web
 
 ---
 
-## 🌟 SEI — Apps · Web · IA
+## 🌟 SEY — Soluciones Empresariales y Tecnología
 
 **👉 Visita mi sitio web para ver servicios, precios y portafolio:**
 **https://sebastian-2308.github.io/sebastian-2308/**
@@ -15,7 +15,8 @@ Ahí encuentras:
 - 🧠 Agentes con inteligencia artificial
 - 📚 Clases de Python
 
-> Acepto pagos económicos y **trueques/colaboraciones** — hablemos.
+> Pagos en dólares (USD): efectivo, Zelle, Pago Móvil y transferencia.
+> También **contratamos personal** y **compramos proyectos innovadores** que nos presenten.
 
 ---
 
@@ -37,10 +38,11 @@ Ahí encuentras:
   
 ---
 
-### 🏛️ Institución y Comunidad
-- *Semillero Científico:* Investigador en Astronomía en *Fundacite*.
-- *Administrador de Comunidades:* Liderazgo en grupos de tecnología y astronomía.
-- *Divulgador científico:* Clases en instituciones sobre astronomía de manera didáctica. 
+### 🏭 Empresa y Talento
+- *Empresa privada:* Soluciones Empresariales y Tecnología (SEY), fundada en Caracas, Venezuela.
+- *Contratamos personal:* Desarrolladores y diseñadores que quieran sumarse al equipo.
+- *Compramos proyectos:* Si tienes un proyecto innovador, te lo compramos.
+- *Divulgador de tecnología:* Clases y formación en Python, robótica e IA para empresas y particulares. 
 
 ### 📬 Conecta conmigo
 - *Email:* sebastianalfonzo23@gmail.com
