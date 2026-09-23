@@ -16,7 +16,7 @@ Ahí encuentras:
 - 📚 Clases de Python
 
 > Pagos en dólares (USD): efectivo, Zelle, Pago Móvil y transferencia.
-> También **contratamos personal** y **compramos proyectos innovadores** que nos presenten.
+> Empresa con alcance internacional: también **buscamos talentos** y **compramos proyectos innovadores** en Venezuela y el mundo.
 
 ---
 
@@ -39,8 +39,8 @@ Ahí encuentras:
 ---
 
 ### 🏭 Empresa y Talento
-- *Empresa privada:* Soluciones Empresariales y Tecnología (SEY), fundada en Caracas, Venezuela.
-- *Contratamos personal:* Desarrolladores y diseñadores que quieran sumarse al equipo.
+- *Empresa privada:* Soluciones Empresariales y Tecnología (SEY), fundada en Caracas, Venezuela, con alcance internacional.
+- *Buscamos talentos:* Desarrolladores y diseñadores de Venezuela y el mundo que quieran sumarse al equipo.
 - *Compramos proyectos:* Si tienes un proyecto innovador, te lo compramos.
 - *Divulgador de tecnología:* Clases y formación en Python, robótica e IA para empresas y particulares. 
 
