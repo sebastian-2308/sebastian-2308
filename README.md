@@ -38,7 +38,8 @@ Somos **SEY**, una empresa privada de tecnología fundada en Caracas, Venezuela,
 
 ### 📬 Contacto
 
-- 📧 **Correo:** seycontacto23@gmail.com
+Comunícate con la empresa a través de:
+- 💼 **Correo corporativo:** seycontacto23@gmail.com
 - 💬 **WhatsApp:** +58 412 3420213
 - 🌐 **Web:** https://sebastian-2308.github.io/sebastian-2308/
 - 🐙 **GitHub:** [github.com/sebastian-2308](https://github.com/sebastian-2308)
